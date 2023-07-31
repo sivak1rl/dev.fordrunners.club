@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Home page -->
+    <url>
+        <loc>https://dev.fordrunners.club/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- About Us page -->
+    <url>
+        <loc>https://dev.fordrunners.club/about.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Events page -->
+    <url>
+        <loc>https://dev.fordrunners.club/events.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact Us page -->
+    <url>
+        <loc>https://dev.fordrunners.club/contact.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Photo Gallery page -->
+    <url>
+        <loc>https://dev.fordrunners.club/gallery.html</loc>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Sitemap  page -->
+    <url>
+        <loc>https://dev.fordrunners.club/sitemap.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Disclaimer page -->
+    <url>
+        <loc>https://dev.fordrunners.club/disclaimer.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>

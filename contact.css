@@ -1,0 +1,72 @@
+
+  #content form input {
+    background-color: #fff;
+  }
+
+  #content form textarea {
+    background-color: #fff;
+  }
+  #content form label {
+    background-color: #f7f7f7;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  #content button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #content button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  #content button[type="submit"]:focus {
+    outline: none;
+  }
+  
+  /* Optional: Add additional styles to make the form more visually appealing */
+  
+  #content form {
+    background-color: #f9f9f9;
+    box-shadow: 4px 4px 8px #00000015;
+    padding: 2em;
+    margin: 1em auto;
+    max-width: 600px;
+  }
+  
+  #content form input,
+  #content form textarea {
+    width:100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-style: double;
+  }
+  
+  #content form input:focus,
+  #content form textarea:focus,
+  #content form input:focus-visible,
+  #content form textarea:focus-visible {
+    border-color: #007bff;
+  }
+  
+  #content form button[type="submit"] {
+    transition: background-color 0.3s;
+  }
+  
+  
+  
+  

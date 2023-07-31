@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The official events page of the Ford Runners Club.">
+    <meta name="keywords" content="ford, runners, running, ford runners, club, running club, sport, sports, events">
+    <meta property="og:title" content="Ford Runners Club">
+    <meta property="og:description" content="The official events page of the Ford Runners Club.">
+    <meta property="og:image" content="https://dev.fordrunners.club/banner.jpg">
+    <meta property="og:url" content="https://dev.fordrunners.club/events.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ford Runners Club">
+    <meta name="twitter:description" content="The official events page of the Ford Runners Club.">
+    <meta name="twitter:image" content="https://dev.fordrunners.club/banner.jpg">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://dev.fordrunners.club/ https://fonts.googleapis.com/; font-src https://fonts.gstatic.com/; img-src 'self' https: data:; child-src https://calendar.google.com;" />
+
+    <title>Ford Runners Club - Events</title>
+    <!-- Link the style sheet to the HTML document -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <!-- Add a header element for the header -->
+    <header id="header">
+        <div id="banner-container">
+            <div class="left25"></div>
+            <div class="center100">
+                <a href="/">
+                    <img src="/logo.jpg" alt="Ford Runners Club logo" id="logo">
+                </a>
+            </div>
+            <div class="right25"></div>
+            <div tabindex="0" aria-label="banner" alt="Ford Runners Club banner" id="banner">
+            </div>
+
+
+            <!-- Add a nav element for the navigation bar -->
+            <nav id="nav">
+
+                <!-- Add a checkbox and a label element for the waffle menu -->
+                <input type="checkbox" id="toggle" aria-labelledby="waffle">
+                <!-- Add an invisible label to cover the entire page and uncheck the toggle input -->
+                <label for="toggle" id="invisible" aria-details="toggle" aria-labelledby="waffle"></label>
+                <label for="toggle" id="waffle" aria-details="toggle" aria-label="Toggle the navigation menu">☰</label>
+                <!-- Add a ul element for the unordered list -->
+                <ul>
+                    <!-- Add li elements for the list items -->
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                </ul>
+            </nav>
+    </header>
+    <!-- Add a main section to hold the content -->
+    <main>
+        <div id="content">
+            <!-- Add the events content here -->
+            <h1>Upcoming Events</h1>
+            <p>Check out the exciting running events organized by the Ford Runners Club:</p>
+            <ul>
+                <li>
+                    <h2>Weekly Track Workout</h2>
+                    <p>Day: Every Tuesday!</p>
+                    <p>Time: 6:00 PM</p>
+                    <p>Location: Check our webex</p>
+                    <p>Join us for our weekly track workout!
+                        Led by our experienced coaches, this workout is suitable for runners of all levels.
+                        We will be starting our run at 6:00 PM sharp, so don't be late!
+                    </p>
+                </li>
+                <li>
+                    <h2>Corporate Cup Relays</h2>
+                    <p>Date: Yearly in June!</p>
+                    <p>Time: 9-5</p>
+                    <p>Location: Berkley, MI</p>
+                    <p>Participate in our annual CCR charity event, where all proceeds will go towards a local
+                        charitable
+                        cause.</p>
+                </li>
+            </ul>
+        </div>
+        <!--Add a Calendar-->
+        <div id="calendar">
+            <iframe
+                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=Zm9yZHJ1bm5lcmNsdWJAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=bGIzcG9iZjU5Y2J2bnZ0NW5scHFubmU1bjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986CB&color=%23AD1457&color=%234285F4"></iframe>
+    </main>
+    
+    
+    <footer>
+        <div id="footer">
+            <div class="right25">
+                <small>
+                    <a href="sitemap.html">Sitemap</a>
+                </small>
+            </div>
+            <div class="center">
+                <!--Made by the Ford Runners Club for the Ford Runners Club -->
+                <p>&copy; 2023 Ford Runners Club</p><br>
+            </div>
+            <div class="left25">
+                <small>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </small>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

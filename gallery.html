@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The official photo page of the Ford Runners Club.">
+    <meta name="keywords" content="ford, runners, running, ford runners, club, running club, sport, sports, photos">
+    <meta property="og:title" content="Ford Runners Club">
+    <meta property="og:description" content="The official photo page of the Ford Runners Club.">
+    <meta property="og:image" content="https://dev.fordrunners.club/banner.jpg">
+    <meta property="og:url" content="https://dev.fordrunners.club/gallery.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ford Runners Club">
+    <meta name="twitter:description" content="The official photo page of the Ford Runners Club.">
+    <meta name="twitter:image" content="https://dev.fordrunners.club/banner.jpg">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://dev.fordrunners.club/ https://fonts.googleapis.com/; font-src https://fonts.gstatic.com/; img-src 'self' https: data:; child-src 'none';" />
+    <title>Ford Runners Club - Photo Gallery</title>
+    <!-- Link the style sheet to the HTML document -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <!-- Add a header element for the header -->
+    <header id="header">
+        <div id="banner-container">
+            <div class="left25"></div>
+            <div class="center100">
+                <a href="/">
+                    <img src="/logo.jpg" alt="Ford Runners Club logo" id="logo">
+                </a>
+            </div>
+            <div class="right25"></div>
+            <div tabindex="0" aria-label="banner" alt="Ford Runners Club banner" id="banner">
+            </div>
+
+
+            <!-- Add a nav element for the navigation bar -->
+            <nav id="nav">
+
+                <!-- Add a checkbox and a label element for the waffle menu -->
+                <input type="checkbox" id="toggle" aria-labelledby="waffle">
+                <!-- Add an invisible label to cover the entire page and uncheck the toggle input -->
+                <label for="toggle" id="invisible" aria-details="toggle" aria-labelledby="waffle"></label>
+                <label for="toggle" id="waffle" aria-details="toggle" aria-label="Toggle the navigation menu">☰</label>
+                <!-- Add a ul element for the unordered list -->
+                <ul>
+                    <!-- Add li elements for the list items -->
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                </ul>
+            </nav>
+    </header>
+    <!-- Add a main section to hold the content -->
+    <main>
+        <div id="content">
+            <!-- Add the photo gallery content here -->
+            <h1>Photo Gallery</h1>
+            <!-- Add your photo gallery elements here -->
+            <div class="gallery">
+                <img src="photo1.png" alt="Event 1">
+                <img src="photo2.jpg" alt="Event 2">
+                <!-- Add more photos with img tags -->
+            </div>
+        </div>
+    </main>
+    
+    
+    <footer>
+        <div id="footer">
+            <div class="right25">
+                <small>
+                    <a href="sitemap.html">Sitemap</a>
+                </small>
+            </div>
+            <div class="center">
+                <!--Made by the Ford Runners Club for the Ford Runners Club -->
+                <p>&copy; 2023 Ford Runners Club</p><br>
+            </div>
+            <div class="left25">
+                <small>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </small>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
