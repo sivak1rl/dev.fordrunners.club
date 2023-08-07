@@ -1,0 +1,17 @@
+#ccr-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+#ccr-info li {
+    border: none;
+    background: unset;
+    margin: 1em 0;
+    padding: 0;
+    width: 100%;
+}

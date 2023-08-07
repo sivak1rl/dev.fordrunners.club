@@ -14,7 +14,7 @@
   }
 
   #content form * {
-    background-color: #faf5e7;
+    background-color: #f6f6f6;
     box-sizing: border-box;
   }
 
@@ -55,11 +55,11 @@
   /* Optional: Add additional styles to make the form more visually appealing */
   
   #content form {
-    background-color: #faf5e7;
+    background-color: #f6f6f6;
     padding: 2em 2em;
     margin: 1em auto;
     border-radius: 2em;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
   }
   
   #content form input {

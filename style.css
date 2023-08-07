@@ -17,7 +17,7 @@ small {
 header,
 main,
 footer {
-  background-color: #f8f8e9;
+  background-color: #f8f8f8;
   /* Set the height of the footer here */
 }
 
@@ -52,21 +52,25 @@ h1 {
   list-style: none;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
 }
-
+#ongoing-events li h2 {
+  text-decoration: dotted underline;
+  text-align: center;
+}
 #ongoing-events li h2,
 #ongoing-events li p {
-  background-color: #fefefc;
   margin: 0 auto 1em;
 }
 #ongoing-events li {
   margin: 1em;
   padding: 1em;
   width: 50%;
-  border: 1px solid #dddddd;
-  flex: 1 1 25%;
+  border: 1px solid #ddd;
+  flex: 1 0 33%;
   border-radius: 2em;
-  background-color: #fefefc;
+  background: radial-gradient(#285ad5, #2c4fa5);
+  color: white;
 }
 
 #nav {
@@ -120,13 +124,14 @@ h1 {
   margin: 0 auto;
   width: 100%;
   border-radius: 2em;
-  padding: 1.1em;
-  background: radial-gradient(#fefefc, #fff);
+  padding: 1.25em;
+  background-color: #e3e9ff;
   box-sizing: border-box;
   border: none;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   height: 500px;
 }
+
 
 #logo {
   position: absolute;
@@ -163,7 +168,7 @@ h1 {
   top: 1em;
   right: 0;
   z-index: 5;
-  transition: right 1s ease;
+  transition: right 0.67s ease;
 }
 
 #toggle {
@@ -172,7 +177,7 @@ h1 {
 
 @media (max-width: 768px) {
   #calendar {
-    display: none;
+    content: "If you're seeing this, please try checking our calendar by following <a href='https://calendar.google.com/calendar/embed?wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=Zm9yZHJ1bm5lcmNsdWJAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=bGIzcG9iZjU5Y2J2bnZ0NW5scHFubmU1bjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986CB&color=%23AD1457&color=%234285F4'>this link</a>"
   }
   main {
     margin: 0 auto;
@@ -203,7 +208,7 @@ h1 {
     width: 10em;
     margin: 0;
     z-index: 5;
-    transition: right 1s ease;
+    transition: right 0.67s ease;
     position: fixed;
     border-bottom-right-radius: 1em;
     border-bottom-left-radius: 1em;
@@ -260,6 +265,9 @@ h1 {
     position: relative;
     display: flex;
   }
+  #content form {
+    width: 67%;
+  }
 
   #nav ul li {
     font-size: 1em;
@@ -276,9 +284,6 @@ h1 {
     background-color: #2c4fa5;
   }
 
-  body {
-    background-color: #fefefe;
-  }
 }
 
 @media screen {
@@ -311,7 +316,7 @@ h1 {
   }
 
   #footer a:visited {
-    color: #dddddd;
+    color: #ddd;
   }
 
   #footer a:visited:hover {
@@ -399,7 +404,7 @@ h1 {
 }
 .about-content .bottom {
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
 }
 
 .about-content .top div,
@@ -416,13 +421,16 @@ h1 {
 }
 .about-content h2 {
   margin: 0;
+  text-align: center;
+  text-decoration: dotted underline;
 }
 
 #content.about-content .top div,
 #content.about-content .bottom div {
-  background-color: #fefefc;
+  background: radial-gradient(#285ad5, #2c4fa5);
+  color: white;
   border-radius: 2em;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   flex: 1 1 33%;
 }
 #content.about-content .bottom div ul {
@@ -437,7 +445,7 @@ h1 {
 }
 
 h1 {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #ddd;
   padding-bottom: 0;
   margin: 0 auto 1em;
 }
