@@ -14,18 +14,20 @@
     <meta name="twitter:title" content="Ford Runners Club">
     <meta name="twitter:description" content="The official photo page of the Ford Runners Club.">
     <meta name="twitter:image" content="https://dev.fordrunners.club/banner.jpg">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://dev.fordrunners.club/ https://fonts.googleapis.com/; font-src https://fonts.gstatic.com/; img-src 'self' https: data:; child-src 'none';" />
+    <meta
+        content="default-src 'self'; connect-src embedr.flickr.com; script-src 'sha384-0Z4fQb9+3N6M2n0GyMlTqHZ+3DFQzrC+3RC6SDPhZKZWwCk9lJj7sNfXDTyzYgFJ' 'nonce-EDNnf03nceIOfn39fn3e9h3sdfa' widgets.flickr.com embedr.flickr.com; style-src 'self' https://dev.fordrunners.club/ https://fonts.googleapis.com/ 'unsafe-inline'; font-src https://fonts.gstatic.com/; img-src 'self' https: data: image/png image/jpeg; child-src 'none';"
+        http-equiv=Content-Security-Policy>
+
+
     <title>Ford Runners Club - Photo Gallery</title>
-    <!-- Link the style sheet to the HTML document -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="gallery.css">
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
-    <!-- Add a header element for the header -->
     <header>
-            <div id="header">
+        <div id="header">
             <div id="banner-container">
                 <div class="left25"></div>
                 <div class="center100">
@@ -36,43 +38,42 @@
                 <div class="right25"></div>
                 <div role="banner" tabindex="0" aria-label="banner" alt="Ford Runners Club banner" id="banner">
                 </div>
-                
-
-                <!-- Add a nav element for the navigation bar -->
                 <nav id="nav">
-                    
-                    <!-- Add a checkbox and a label element for the waffle menu -->
                     <input type="checkbox" id="toggle" aria-labelledby="waffle">
-                <!-- Add an invisible label to cover the entire page and uncheck the toggle input -->
-                <label for="toggle" id="invisible" aria-details="toggle" aria-labelledby="waffle"></label>
-                <label for="toggle" id="waffle" aria-details="toggle" aria-label="Toggle the navigation menu">☰</label>
-                <!-- Add a ul element for the unordered list -->
-                <ul>
-                    <!-- Add li elements for the list items -->
-                    <li><a href="/">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="gallery.html">Photo Gallery</a></li>
-                </ul>
-            </nav>
+                    <label for="toggle" id="invisible" aria-details="toggle" aria-labelledby="waffle"></label>
+                    <label for="toggle" id="waffle" aria-details="toggle"
+                        aria-label="Toggle the navigation menu">☰</label>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="new.html">New Runners</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                    </ul>
+                </nav>
             </div>
-        </header>
-    <!-- Add a main section to hold the content -->
+    </header>
     <main>
         <div id="content">
-            <!-- Add the photo gallery content here -->
             <h1>Photo Gallery</h1>
-            <!-- Add your photo gallery elements here -->
             <div class="gallery">
                 <img src="photo1.png" alt="Event 1">
                 <img src="photo2.jpg" alt="Event 2">
-                <!-- Add more photos with img tags -->
+            </div>
+            <div>
+                <h2>Check out our photos on Flickr</h2>
+                <a data-flickr-embed="true" data-header="true" data-footer="true"
+                    href="https://www.flickr.com/photos/100703222@N03" title=""><img
+                        src="https://live.staticflickr.com/5833/21805331798_2091b8fb73_z.jpg" width="640" height="480"
+                        alt="" /></a>
+                <script nonce="EDNnf03nceIOfn39fn3e9h3sdfa" async src="//embedr.flickr.com/assets/client-code.js"
+                    charset="utf-8"></script>
             </div>
         </div>
     </main>
-    
-    
+
+
     <footer>
         <div id="footer">
             <div class="left25">

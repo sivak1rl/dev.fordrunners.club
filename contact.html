@@ -14,19 +14,17 @@
     <meta name="twitter:title" content="Ford Runners Club">
     <meta name="twitter:description" content="Get in touch with the Ford Runners Club.">
     <meta name="twitter:image" content="https://dev.fordrunners.club/banner.jpg">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://dev.fordrunners.club/ https://fonts.googleapis.com/; font-src https://fonts.gstatic.com/; img-src 'self' https: data:; child-src 'none';" />
-
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' https://dev.fordrunners.club/ https://fonts.googleapis.com/; font-src https://fonts.gstatic.com/; img-src 'self' https: data:; child-src 'none';" />
     <title>Ford Runners Club - Contact Us</title>
-    <!-- Link the style sheet to the HTML document -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
-    <!-- Add a header element for the header -->
     <header>
-            <div id="header">
+        <div id="header">
             <div id="banner-container">
                 <div class="left25"></div>
                 <div class="center100">
@@ -37,57 +35,42 @@
                 <div class="right25"></div>
                 <div role="banner" tabindex="0" aria-label="banner" alt="Ford Runners Club banner" id="banner">
                 </div>
-                
-
-                <!-- Add a nav element for the navigation bar -->
                 <nav id="nav">
-                    
-                    <!-- Add a checkbox and a label element for the waffle menu -->
                     <input type="checkbox" id="toggle" aria-labelledby="waffle">
-                <!-- Add an invisible label to cover the entire page and uncheck the toggle input -->
-                <label for="toggle" id="invisible" aria-details="toggle" aria-labelledby="waffle"></label>
-                <label for="toggle" id="waffle" aria-details="toggle" aria-label="Toggle the navigation menu">☰</label>
-                <!-- Add a ul element for the unordered list -->
-                <ul>
-                    <!-- Add li elements for the list items -->
-                    <li><a href="/">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="gallery.html">Photo Gallery</a></li>
-                </ul>
-            </nav>
+                    <label for="toggle" id="invisible" aria-details="toggle" aria-labelledby="waffle"></label>
+                    <label for="toggle" id="waffle" aria-details="toggle"
+                        aria-label="Toggle the navigation menu">☰</label>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="new.html">New Runners</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                    </ul>
+                </nav>
             </div>
-        </header>
-    <!-- Add a main section to hold the content -->
+    </header>
     <main>
         <div id="content">
-            <!-- Add the contact content here -->
             <h1 id="main-header">Contact Us</h1>
-            <p>Have questions or want to get in touch with the Ford Runners Club? Fill out the form below, and we'll
-                get back to you as soon as possible.</p>
-            <!-- Add a contact form -->
-            <form id="form" action="" method="GET">
-                <div id="form-wrapper">
-
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                    
-                    <label for="subject">Subject:</label>
-                    <input type="text" id="subject" name="subject" required>
-                    
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="6" required></textarea>
-                    <button type="submit">Send Message</button>
+            <p>Have questions or want to get in touch with the Ford Runners Club? You can get us here.</p>
+            <div id="contact">
+                <div class="left50">
+                    <h2>Webex</h2>
+                    <p>Join our Webex Teams space with the link below.</p>
+                    <p><a target="blank"
+                            href="https://www.webexteams.ford.com/space?r=qi6q">https://www.webexteams.ford.com/space?r=qi6q</a>
+                    </p>
                 </div>
-                </form>
+                <div class="right50">
+                    <h2>Email</h2>
+                    <p>Send us an email at <a href="mailto:fordrunnerclub@gmail.com">fordrunnerclub@gmail.com</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </main>
- 
-    
     <footer>
         <div id="footer">
             <div class="left25">
