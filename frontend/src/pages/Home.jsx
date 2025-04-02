@@ -1,24 +1,102 @@
-import '../styles/style.css';
-import '../styles/Home.css';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div id="content">
-      <h1>Welcome to the Ford Runners Club</h1>
-      <p>The Ford Runners Club is a community of passionate runners who come together to promote health, fitness,
-        and camaraderie through the joy of running.</p>
-      <p>Our club offers a wide range of running activities and events, including regular group runs, training
-        sessions, and participation in local and national running races. Whether you are a seasoned marathon
-        runner or just starting on your running journey, our club provides a supportive and inclusive
-        environment for all members.</p>
-      <p>As a member of the Ford Runners Club, you'll have access to experienced coaches, personalized training
-        plans, and opportunities to connect with like-minded individuals who share your passion for running. We
-        believe in the power of running to not only improve physical health but also to build strong friendships
-        and foster a sense of community.</p>
-      <p>Come join us and experience the thrill of running, the encouragement of fellow runners, and the
-        satisfaction of achieving your running goals. Whether you're aiming to complete your first 5K or conquer
-        a marathon, the Ford Runners Club is here to support you every step of the way.</p>
-    </div>
+    <main>
+      {/* Hero Section */}
+      <section className="home-hero">
+        <div className="container">
+          <div className="home-hero-content">
+            <h1>Welcome to the Ford Runners Club</h1>
+            <p>
+              A community of passionate runners dedicated to promoting health, fitness, 
+              and camaraderie through the joy of running.
+            </p>
+            <div className="home-hero-buttons">
+              <Link to="/new" className="btn btn-accent">
+                New Runners Start Here
+              </Link>
+              <Link to="/events" className="btn btn-secondary">
+                View Upcoming Events
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="home-features">
+        <div className="container">
+          <h2 className="section-title centered">What We Offer</h2>
+          <div className="home-feature-grid">
+            <div className="feature-card card">
+              <div className="feature-icon">
+                <i className="fas fa-running"></i>
+              </div>
+              <h3 className="feature-title">Group Runs</h3>
+              <p>
+                Join our weekly group runs led by experienced coaches. No matter your 
+                pace or experience level, there's a place for you.
+              </p>
+            </div>
+
+            <div className="feature-card card">
+              <div className="feature-icon">
+                <i className="fas fa-trophy"></i>
+              </div>
+              <h3 className="feature-title">Events & Races</h3>
+              <p>
+                Participate in local and national running events and races with 
+                fellow members, including our annual Corporate Cup Relays.
+              </p>
+            </div>
+
+            <div className="feature-card card">
+              <div className="feature-icon">
+                <i className="fas fa-users"></i>
+              </div>
+              <h3 className="feature-title">Community</h3>
+              <p>
+                Connect with a supportive community of runners who encourage and 
+                motivate each other to achieve their personal goals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="home-testimonial">
+        <div className="container">
+          <h2 className="section-title centered">Runner Stories</h2>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "The Ford Runners Club has transformed my running journey. The supportive 
+              community and expert coaching have helped me achieve goals I never 
+              thought possible. I've made lasting friendships and found a true 
+              passion for running."
+            </p>
+            <p className="testimonial-author">- Sarah T., Member since 2021</p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="home-cta">
+        <div className="container">
+          <div className="home-cta-content">
+            <h2 className="cta-title">Ready to Join Our Running Community?</h2>
+            <p>
+              Whether you're a seasoned marathoner or just starting your running journey, 
+              the Ford Runners Club welcomes you. Join us for our next event!
+            </p>
+            <Link to="/contact" className="btn btn-accent">
+              Get in Touch
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 

@@ -1,0 +1,27 @@
+/* Ford Runners Club - Modern CSS Framework */
+
+/* Base styles */
+@import 'variables.css';
+@import 'reset.css';
+@import 'global.css';
+@import 'utilities.css';
+
+/* Layout */
+@import 'layout.css';
+
+/* Components */
+@import 'components.css';
+@import 'header.css';
+@import 'footer.css';
+
+/* Pages */
+@import 'pages.css';
+
+/*
+  To use this CSS framework:
+  
+  1. Import this main.css file in your main entry point (e.g., main.jsx)
+  2. Structure your components with the provided class names
+  3. Use utility classes for quick styling adjustments
+  4. Customize variables.css to match your brand if needed
+*/
