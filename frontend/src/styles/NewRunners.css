@@ -1,0 +1,122 @@
+.training-plans {
+  margin-bottom: var(--space-2xl);
+}
+
+.plan-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  border-bottom: 2px solid var(--gray-200);
+  padding-bottom: var(--space-sm);
+}
+
+.plan-tab {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  cursor: pointer;
+  background-color: var(--gray-100);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.plan-tab.active {
+  background-color: var(--ford-blue);
+  color: var(--white);
+}
+
+.plan-content {
+  display: none;
+}
+
+.plan-content.active {
+  display: block;
+}
+
+.week-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.week-item {
+  background-color: var(--white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-md);
+  overflow: hidden;
+}
+
+.week-header {
+  background-color: var(--ford-blue);
+  color: var(--white);
+  padding: var(--space-md) var(--space-lg);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.week-content {
+  padding: var(--space-lg);
+  border: 1px solid var(--gray-200);
+  border-top: none;
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+}
+
+.tips-section {
+  background-color: var(--gray-100);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+.tip-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--ford-blue);
+}
+
+.tip-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-md);
+  color: var(--ford-blue);
+}
+
+.tip-icon {
+  margin-right: var(--space-sm);
+}
+
+.references-section {
+  padding: var(--space-xl);
+  background-color: var(--gray-100);
+  border-radius: var(--border-radius-lg);
+}
+
+.reference-list {
+  list-style-type: decimal;
+}
+
+.reference-item {
+  margin-bottom: var(--space-md);
+}
+
+.reference-link {
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

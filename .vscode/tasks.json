@@ -1,0 +1,96 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Project",
+            "detail": "Start frontend development server",
+            "type": "npm",
+            "script": "start",
+            "path": "frontend/",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Rebuild Project",
+            "detail": "Rebuild frontend and start backend",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Build Frontend",
+                "Start Backend"
+            ],
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Production Build",
+            "detail": "Create production build and start Flask in production mode",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Build Frontend Production",
+                "Start Backend Production"
+            ],
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Build Frontend",
+            "type": "npm",
+            "script": "build",
+            "path": "frontend/",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Build Frontend Production",
+            "type": "npm",
+            "script": "build",
+            "path": "frontend/",
+            "args": ["--", "--mode=production"],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Start Backend",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/backend; .\\.venv\\Scripts\\Activate.ps1; python -m flask run",
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Start Backend Production",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/backend; .\\.venv\\Scripts\\Activate.ps1; python -m flask run --no-debugger --no-reload",
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        }
+    ]
+}
