@@ -7,9 +7,9 @@ function Gallery() {
   const galleryImages = [
     {
       id: 1,
-      src: '/photo1.png',
-      alt: 'Group Run Event',
-      caption: 'Weekly group run through the park'
+      src: '/photo1.webp',
+      alt: 'Ford Runners Club jerseys',
+      caption: 'Jerseys are available for purchase through the club'
     },
     {
       id: 2,
