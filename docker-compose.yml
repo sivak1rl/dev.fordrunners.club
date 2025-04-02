@@ -1,15 +1,15 @@
+version: '3.8'
 
 services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: nginx.Dockerfile
+      dockerfile: Dockerfile.nginx
+    volumes:
+      - ./frontend/ssl:/etc/nginx/ssl
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      # For development: mount SSL certificates
-      - ./frontend/ssl:/etc/nginx/ssl
     depends_on:
       - backend
     restart: unless-stopped
@@ -22,8 +22,6 @@ services:
       dockerfile: Dockerfile
     expose:
       - "5000"
-    volumes:
-      - ./backend:/app
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
