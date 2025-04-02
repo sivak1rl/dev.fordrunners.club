@@ -47,7 +47,6 @@
 /* Hero banner */
 .hero-banner {
   position: relative;
-  max-height: 25vh;
   width: 100%;
   background-image: url('/banner.webp');
   background-size: cover;

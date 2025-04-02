@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+// Styles
+import './styles/main.css';
 // Components
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,9 +16,6 @@ import NewRunners from './pages/NewRunners';
 import Gallery from './pages/Gallery';
 import Disclaimer from './pages/Disclaimer';
 import Sitemap from './pages/Sitemap';
-
-// Styles
-import './styles/main.css';
 
 // ScrollToTop component to scroll to top on route change
 function ScrollToTop() {
