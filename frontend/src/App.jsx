@@ -11,7 +11,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Events from './pages/Events';
 import NewRunners from './pages/NewRunners';
-import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import Disclaimer from './pages/Disclaimer';
 import Sitemap from './pages/Sitemap';

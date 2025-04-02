@@ -90,7 +90,7 @@ function Home() {
               Whether you're a seasoned marathoner or just starting your running journey, 
               the Ford Runners Club welcomes you. Join us for our next event!
             </p>
-            <Link to="/contact" className="btn btn-accent">
+            <Link to="#contact-links" className="btn btn-accent">
               Get in Touch
             </Link>
           </div>

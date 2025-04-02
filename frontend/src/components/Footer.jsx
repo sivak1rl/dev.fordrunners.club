@@ -37,27 +37,12 @@ function Footer() {
 
         <div className="footer-section">
           <h3 className="footer-heading">Contact</h3>
-          <ul className="footer-contact-list">
+          <ul id="contact-links" className="footer-contact-list">
             <li className="footer-contact-item">
               <span className="footer-contact-icon">
                 <i className="fas fa-envelope"></i>
               </span>
-              <a href="mailto:fordrunnerclub@gmail.com" className="footer-link">
-                fordrunnerclub@gmail.com
-              </a>
-            </li>
-            <li className="footer-contact-item">
-              <span className="footer-contact-icon">
-                <i className="fas fa-comment"></i>
-              </span>
-              <a 
-                href="https://www.webexteams.ford.com/space?r=qi6q" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Join our Webex Teams space
-              </a>
+              Please reach out to either rsivak [at ford.com] or efishe40 [at ford.com] to join our MS Teams Chat
             </li>
           </ul>
         </div>
