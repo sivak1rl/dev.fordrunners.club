@@ -40,7 +40,7 @@ function Header() {
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container header-container">
           <Link to="/" className="header-logo">
-            <img src="/logo.webp" alt="Ford Runners Club" />
+            <img src="/logo.jpg" alt="Ford Runners Club" />
             <span className="header-logo-text">Ford Runners Club</span>
           </Link>
           
@@ -69,7 +69,7 @@ function Header() {
             </button>
             
             <div className="nav-header">
-              <img src="/logo.webp" alt="Ford Runners Club" width="80" />
+              <img src="/logo.jpg" alt="Ford Runners Club" width="80" />
             </div>
             
             <ul className="nav-menu">

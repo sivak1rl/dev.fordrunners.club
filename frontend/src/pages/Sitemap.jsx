@@ -41,11 +41,6 @@ function Sitemap() {
                     <i className="fas fa-images mr-2"></i> Photo Gallery
                   </Link>
                 </li>
-                <li>
-                  <Link to="/contact" className="text-ford-blue hover:underline flex items-center">
-                    <i className="fas fa-envelope mr-2"></i> Contact Us
-                  </Link>
-                </li>
               </ul>
             </div>
 
@@ -66,16 +61,6 @@ function Sitemap() {
 
               <h2 className="text-2xl font-semibold mt-8 mb-4">External Resources</h2>
               <ul className="space-y-3">
-                <li>
-                  <a
-                    href="https://www.webexteams.ford.com/space?r=qi6q"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-ford-blue hover:underline flex items-center"
-                  >
-                    <i className="fas fa-comment mr-2"></i> Webex Teams Space
-                  </a>
-                </li>
                 <li>
                   <a
                     href="https://calendar.google.com/calendar/embed?wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&src=Zm9yZHJ1bm5lcmNsdWJAZ21haWwuY29t"

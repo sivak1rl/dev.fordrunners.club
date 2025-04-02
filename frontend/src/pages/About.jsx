@@ -106,7 +106,6 @@ function About() {
               <p className="mb-6">
                 Let's run, explore, and achieve greatness together!
               </p>
-              <a href="/contact" className="btn btn-primary">Contact Us to Join</a>
             </div>
           </div>
         </section>

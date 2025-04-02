@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start": "vite",
-    "backend": "cd ../backend && python -m flask run",
+    "backend": "cd ../backend; ./.venv/Scripts/Activate.ps1; python -m flask run",
     "start:full": "concurrently \"npm run start\" \"npm run backend\""
   },
   "dependencies": {

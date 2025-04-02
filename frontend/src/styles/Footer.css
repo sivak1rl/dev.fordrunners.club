@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--sp-8);
+  margin: var(--sp-8);
 }
 
 .footer-brand {

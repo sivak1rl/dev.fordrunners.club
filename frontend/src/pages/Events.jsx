@@ -93,9 +93,9 @@ function Events() {
                 </div>
                 <div className="event-content">
                   <p className="event-description">{event.description}</p>
-                  <div className="event-actions">
-                    <a href="/contact" className="btn btn-primary btn-sm">Contact for Details</a>
-                  </div>
+                  {/* <div className="event-actions">
+                    <a href="#contact-links" className="btn btn-primary btn-sm">Contact for Details</a>
+                  </div> */}
                 </div>
               </div>
             ))}
@@ -116,22 +116,9 @@ function Events() {
               </div>
             </div>
             
-            <div className="alert alert-info">
-              <div className="alert-icon">
-                <i className="fas fa-map-marker-alt"></i>
-              </div>
-              <div className="alert-content">
-                <h4 className="alert-title">Where</h4>
-                <p>All events will be staged at Anderson Middle School (3205 Catalpa Dr, Berkley, MI 48072)</p>
-              </div>
-            </div>
-            
             <div className="card p-6">
               <p className="mb-4">
                 All ability levels and ages are welcome. The relay events have many different age and gender requirements to level the playing field amongst teams. We especially need retirees for the morning road races. Please talk to us before you decide you are too slow to compete.
-              </p>
-              <p className="mb-0">
-                <strong>For anyone interested in TRACK events</strong>, there will be <strong>time trials on Tuesday, June 6th at 6pm</strong> in Dearborn! If you do not have recent track times, please plan to attend so we can start building relay teams and meet your teammates. Team captain will send out details to registered athletes. All speeds and skill levels will be there and everyone who wants to run in a relay will have a chance to.
               </p>
             </div>
           </div>

@@ -85,10 +85,7 @@ function Disclaimer() {
             <h2 className="text-2xl font-semibold mb-4">8. Contact Us</h2>
             <p>
               If you have any questions or concerns about the disclaimers or any aspect of 
-              the Ford Runners Club website, please feel free to contact us using the{' '}
-              <Link to="/contact" className="text-ford-blue hover:underline">
-                Contact Us
-              </Link> page.
+              the Ford Runners Club website, please feel free to contact us.
             </p>
           </section>
         </div>

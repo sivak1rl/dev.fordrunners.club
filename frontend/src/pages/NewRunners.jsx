@@ -267,7 +267,7 @@ function NewRunners() {
                 Check back soon or contact us to be notified when the plan becomes available.
               </p>
               <div className="mt-6">
-                <Link to="/contact" className="btn btn-primary">
+                <Link to="#contact-links" className="btn btn-primary">
                   Contact for Details
                 </Link>
               </div>

@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-container">
         <div className="footer-brand">
-          <img src="/logo.webp" alt="Ford Runners Club" className="footer-logo" />
+          <img src="/logo.jpg" alt="Ford Runners Club" className="footer-logo" />
           <p className="footer-tagline">
             Running together for health, fitness, and community
           </p>
