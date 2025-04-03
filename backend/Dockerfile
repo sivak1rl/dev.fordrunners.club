@@ -1,25 +1,22 @@
-FROM python:3.11-slim
+FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install dependencies
+# Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY . .
 
-# Create a non-root user to run the application
-RUN useradd -m appuser
-USER appuser
-
 # Set environment variables
-ENV FLASK_APP=app.py
+ENV PYTHONPATH=/app
+ENV FLASK_APP=frc
 ENV FLASK_ENV=production
-ENV FLASK_DEBUG=0
+ENV SECRET_KEY=${SECRET_KEY}
 
-# Expose the port
+# Expose port
 EXPOSE 5000
 
-# Start the application
-CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+# Command to run when container starts
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "run:create_app()"]

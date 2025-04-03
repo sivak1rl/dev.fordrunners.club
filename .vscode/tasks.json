@@ -65,7 +65,7 @@
         {
             "label": "Start Backend",
             "type": "shell",
-            "command": "cd ${workspaceFolder}/backend; .\\.venv\\Scripts\\Activate.ps1; python -m flask run",
+            "command": "cd ${workspaceFolder}/backend; .\\.venv\\Scripts\\Activate.ps1; python -m flask --app frc run",
             "options": {
                 "shell": {
                     "executable": "powershell.exe"

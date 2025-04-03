@@ -1,51 +1,26 @@
 import { useState, useEffect } from 'react';
 
 function Events() {
-  const [events, setEvents] = useState([
-    {
-      id: 1,
-      title: 'Weekly Track Workout',
-      day: 'Every Tuesday',
-      time: '6:00 PM',
-      location: 'Check our Webex',
-      description: 'Runners of all ability levels are welcome. There is no one who is too slow for these workouts. Each runner goes at what-ever pace they are comfortable at. The workout begins Tuesdays at 6:00 PM, but show up early if you need time to warm-up and stretch. There is no bathroom or place to change, there is no water fountain, so be advised.'
-    },
-    {
-      id: 2,
-      title: 'Corporate Cup Relays',
-      date: 'June 2025',
-      location: 'Berkley, MI',
-      description: 'The FRC\'s main event each year is a charity 5k/10k and track & field competition vs GM and Stellantis called the Corporate Cup Relays which is held in June. This competition is a lot of fun and raises money for Special Olympics of Michigan and Friends For The Dearborn Animal Shelter. CCR is open to Salaried, Hourly, Agency, Retired/Alumni*, Supplier and Supplemental employees located at a Ford site.'
-    },
-    {
-      id: 3,
-      title: 'Weekend Long Run',
-      day: 'Every Saturday',
-      time: '8:00 AM',
-      location: 'Rotating Locations',
-      description: 'Join us for our weekend long run where we tackle different routes around the area. All paces welcome! Routes are typically between 5-10 miles, with options to shorten or extend based on your training needs.'
-    }
-  ]);
+  const [events, setEvents] = useState([]);
   
   // In a production app, you would fetch events from your API
-  // useEffect(() => {
-  //   const fetchEvents = async () => {
-  //     try {
-  //       const response = await fetch('/api/events');
-  //       const data = await response.json();
-  //       setEvents(data);
-  //     } catch (error) {
-  //       console.error('Error fetching events:', error);
-  //     }
-  //   };
-  //   
-  //   fetchEvents();
-  // }, []);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('/api/events');
+        const data = await response.json();
+        setEvents(data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+    
+    fetchEvents();
+  }, []);
 
   return (
     <main>
       <div className="container">
-        {/* Page Header */}
         <div className="page-header">
           <div className="page-header-content">
             <h1 className="page-title">Upcoming Events</h1>
@@ -56,7 +31,6 @@ function Events() {
           </div>
         </div>
 
-        {/* Regular Events Section */}
         <section className="section">
           <h2 className="section-title">Ongoing Events</h2>
           <div className="events-list">
