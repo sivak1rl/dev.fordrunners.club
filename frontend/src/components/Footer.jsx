@@ -18,7 +18,7 @@ function Footer() {
             <a href="https://www.instagram.com/fordrunnersclub" className="social-link" aria-label="Instagram">
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="https://www.strava.com/" className="social-link" aria-label="Strava">
+            <a href="https://www.strava.com/clubs/fordrunnersclub" className="social-link" aria-label="Strava">
               <i className="fab fa-strava"></i>
             </a>
           </div>

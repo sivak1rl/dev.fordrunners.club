@@ -40,6 +40,10 @@ h6 {
   font-size: var(--fs-base);
 }
 
+p {
+  font-family: var(--font-primary);
+}
+
 p, ul, ol {
   margin-bottom: var(--sp-4);
 }

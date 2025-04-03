@@ -175,6 +175,7 @@
   padding: var(--sp-3) var(--sp-4);
   color: var(--gray-800);
   font-weight: var(--fw-medium);
+  font-family: var(--font-primary);
   border-radius: var(--radius-md);
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
