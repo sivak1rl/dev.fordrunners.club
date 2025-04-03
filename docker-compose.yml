@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile.nginx
     volumes:
       - ./frontend/ssl:/etc/nginx/ssl
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
       - "80:80"
       - "443:443"
