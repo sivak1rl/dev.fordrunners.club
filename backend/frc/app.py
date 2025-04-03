@@ -2,27 +2,32 @@ from flask import Flask, send_from_directory
 from flask_cors import CORS
 import os
 from frc.blueprints.api import api_bp
-
+from frc.extensions import db, migrate
 
 def create_app(test_config=None):
-    # Create Flask app instance
     app = Flask(__name__, static_folder='../../frontend/dist')
     
-    # Configure app
     if test_config is None:
-        # Load production config
         app.config.from_mapping(
             SECRET_KEY=os.environ.get('SECRET_KEY', 'dev-key-please-change-in-production'),
         )
+        if os.environ.get('DATABASE_URL'):
+            app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+        else:
+            app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ford_runners.db'
+        
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     else:
-        # Load test config
         app.config.update(test_config)
     
-    # Enable CORS
+    db.init_app(app)
+    migrate.init_app(app, db)
     CORS(app)
     
-    # Register blueprints
     app.register_blueprint(api_bp, url_prefix='/api')
+    with app.app_context():
+        import frc.models
+        db.create_all()
     return app
     
 # Create app instance for running directly
