@@ -40,6 +40,10 @@ h6 {
   font-size: var(--fs-base);
 }
 
+body {
+  margin:0;
+}
+
 p {
   font-family: var(--font-primary);
 }

@@ -26,7 +26,10 @@ html {
   
   body {
     overflow-x: hidden;
-    padding:1em;
+  }
+
+  html {
+    background-color: var(--color-primary)
   }
 }
 .content {
