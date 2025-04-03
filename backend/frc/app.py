@@ -29,4 +29,5 @@ def create_app(test_config=None):
 app = create_app()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    debug_mode = os.environ.get('FLASK_ENV') == 'development'
+    app.run(debug=debug_mode)
