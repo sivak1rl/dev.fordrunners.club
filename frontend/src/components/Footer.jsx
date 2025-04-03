@@ -12,10 +12,10 @@ function Footer() {
             Running together for health, fitness, and community
           </p>
           <div className="social-links">
-            <a href="https://www.facebook.com/" className="social-link" aria-label="Facebook">
+            <a href="https://www.facebook.com/FordRunnersClub/" className="social-link" aria-label="Facebook">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.instagram.com/" className="social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/fordrunnersclub" className="social-link" aria-label="Instagram">
               <i className="fab fa-instagram"></i>
             </a>
             <a href="https://www.strava.com/" className="social-link" aria-label="Strava">

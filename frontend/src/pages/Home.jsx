@@ -69,14 +69,8 @@ function Home() {
       <section className="home-testimonial">
         <div className="container">
           <h2 className="section-title centered">Runner Stories</h2>
-          <div className="testimonial-card">
-            <p className="testimonial-quote">
-              "The Ford Runners Club has transformed my running journey. The supportive 
-              community and expert coaching have helped me achieve goals I never 
-              thought possible. I've made lasting friendships and found a true 
-              passion for running."
-            </p>
-            <p className="testimonial-author">- Sarah T., Member since 2021</p>
+          <div className="strava-widget">
+          <iframe allowtransparency='true' frameborder='0' height='454' width='500px' src='https://www.strava.com/clubs/107693/latest-rides/f316579198369657308aac43ec63a6a313c88797?show_rides=true'></iframe>
           </div>
         </div>
       </section>
