@@ -19,4 +19,4 @@ ENV SECRET_KEY=${SECRET_KEY}
 EXPOSE 5000
 
 # Command to run when container starts
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "run:create_app()"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "frc:create_app()"]

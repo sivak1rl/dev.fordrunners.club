@@ -13,7 +13,6 @@ def create_app(test_config=None):
         # Load production config
         app.config.from_mapping(
             SECRET_KEY=os.environ.get('SECRET_KEY', 'dev-key-please-change-in-production'),
-            # Add other configuration settings here
         )
     else:
         # Load test config
@@ -24,18 +23,8 @@ def create_app(test_config=None):
     
     # Register blueprints
     app.register_blueprint(api_bp, url_prefix='/api')
-    
-    # Serve React frontend
-    @app.route('/', defaults={'path': ''})
-    @app.route('/<path:path>')
-    def serve(path):
-        if path != "" and os.path.exists(app.static_folder + '/' + path):
-            return send_from_directory(app.static_folder, path)
-        else:
-            return send_from_directory(app.static_folder, 'index.html')
-    
     return app
-
+    
 # Create app instance for running directly
 app = create_app()
 
