@@ -89,9 +89,6 @@ function About() {
           <h2 className="section-title">Get Involved</h2>
           <div className="grid grid-2 gap-8">
             <div>
-              <img src="/runners-group.jpg" alt="Group of runners" className="rounded-lg shadow-md w-full" />
-            </div>
-            <div>
               <p className="text-lg">
                 Ready to lace up your running shoes and be part of our thriving community? 
                 Joining the Ford Runners Club is simple! You can sign up online through 

@@ -8,10 +8,7 @@ services:
           - BUILD_MODE=prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
-      - ./frontend/nginx.prod.conf:/etc/nginx/conf.d/production.conf
-    ports:
-      - "80:80"
-      - "443:443"
+      - ./frontend/nginx.production.conf:/etc/nginx/conf.d/production.conf
     depends_on:
       - backend
     restart: unless-stopped
@@ -35,7 +32,6 @@ services:
       - ./frontend/nginx.dev.conf:/etc/nginx/conf.d/production.conf
       - ./frontend/vite.dev.config.js:/app/vite.config.js
     ports:
-      - "8080:80"
       - "8443:443"
     depends_on:
       - backend-dev

@@ -60,57 +60,6 @@ function Profile() {
                 </div>
               )}
               
-              <form onSubmit={handlePasswordChange}>
-                <div className="form-group">
-                  <label htmlFor="currentPassword" className="form-label">Current Password</label>
-                  <input
-                    type="password"
-                    id="currentPassword"
-                    name="currentPassword"
-                    className="form-control"
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="newPassword" className="form-label">New Password</label>
-                  <input
-                    type="password"
-                    id="newPassword"
-                    name="newPassword"
-                    className="form-control"
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="confirmPassword" className="form-label">Confirm New Password</label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    className="form-control"
-                    required
-                  />
-                </div>
-                
-                <div className="form-submit">
-                  <button type="submit" className="btn btn-primary">
-                    Update Password
-                  </button>
-                </div>
-              </form>
-              
-              <div className="mt-8 pt-6 border-t">
-                <h3 className="text-lg font-semibold mb-4 text-error">Danger Zone</h3>
-                
-                <button 
-                  onClick={logout} 
-                  className="btn btn-secondary"
-                >
-                  Logout from All Devices
-                </button>
-              </div>
             </div>
           </div>
         </div>
