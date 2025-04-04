@@ -120,7 +120,7 @@ services:
       - "5000"
     environment:
       - FLASK_APP=app.py
-      - FLASK_ENV=development
+      - FLASK_ENV=local
       - FLASK_DEBUG=1
     networks:
       - local-network
