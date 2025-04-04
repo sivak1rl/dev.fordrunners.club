@@ -1,39 +1,77 @@
-from flask import Blueprint, jsonify
+from functools import wraps
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import get_jwt, get_jwt_identity, jwt_required
+from frc.models.user import User
+from frc.models.event import Event
+from frc.extensions import db
 
 # Create blueprint
-api_bp = Blueprint('api', __name__)
+api_bp = Blueprint("api", __name__)
 
-# Add routes to blueprint
-@api_bp.route('/hello', methods=['GET'])
-def hello():
-    return jsonify({"message": "Hello from Ford Runners Club API!"})
+def admin_required(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        jwt_data = get_jwt()
+        if not jwt_data.get('is_admin', False):
+            return jsonify({"error": "Admin privileges required"}), 403
+        return fn(*args, **kwargs)
+    return wrapper
+        
 
-# Add more API routes as needed
-# For example:
-@api_bp.route('/events', methods=['GET'])
+@api_bp.route("/events", methods=["GET"])
 def get_events():
-    # Logic to fetch events from database
-    events = [{
-      "id": 1,
-      "title": 'Weekly Track Workout',
-      "day": 'Every Tuesday',
-      "time": '6:00 PM',
-      "location": 'Check our Webex',
-      "description": 'Runners of all ability levels are welcome. There is no one who is too slow for these workouts. Each runner goes at what-ever pace they are comfortable at. The workout begins Tuesdays at 6:00 PM, but show up early if you need time to warm-up and stretch. There is no bathroom or place to change, there is no water fountain, so be advised.'
-    },
-    {
-      "id": 2,
-      "title": 'Corporate Cup Relays',
-      "date": 'June 2025',
-      "location": 'Berkley, MI',
-      "description": 'The FRC\'s main event each year is a charity 5k/10k and track & field competition vs GM and Stellantis called the Corporate Cup Relays which is held in June. This competition is a lot of fun and raises money for Special Olympics of Michigan and Friends For The Dearborn Animal Shelter. CCR is open to Salaried, Hourly, Agency, Retired/Alumni*, Supplier and Supplemental employees located at a Ford site.'
-    },
-    {
-      "id": 3,
-      "title": 'Weekend Long Run',
-      "day": 'Every Saturday',
-      "time": '8:00 AM',
-      "location": 'Rotating Locations',
-      "description": 'Join us for our weekend long run where we tackle different routes around the area. All paces welcome! Routes are typically between 5-10 miles, with options to shorten or extend based on your training needs.'
-    }]
-    return jsonify(events)
+    query = db.session.query(Event)
+    events = query.all()
+    return jsonify([e.to_dict() for e in events])
+
+
+@api_bp.route("/events", methods=["POST"])
+@jwt_required()
+@admin_required
+def create_event():
+    data = request.json
+    event = Event(
+        title=data.get("title"),
+        description=data.get("description"),
+        date=data.get("date"),
+        day=data.get("day"),
+        time=data.get("time"),
+        location=data.get("location"),
+    )
+    db.session.add(event)
+    db.session.commit()
+    return jsonify(event.to_dict()), 201
+
+@api_bp.route('/events/<int:event_id>', methods=['PUT'])
+@jwt_required()
+@admin_required
+def update_event(event_id):
+    event = Event.query.get_or_404(event_id)
+    data = request.json
+    
+    event.title = data.get('title', event.title)
+    event.description = data.get('description', event.description)
+    event.date = data.get('date', event.date)
+    event.day = data.get('day', event.day)
+    event.time = data.get('time', event.time)
+    event.location = data.get('location', event.location)
+    
+    db.session.commit()
+    return jsonify(event.to_dict())
+
+@api_bp.route('/events/<int:event_id>', methods=['DELETE'])
+@jwt_required()
+@admin_required
+def delete_event(event_id):
+    event = Event.query.get_or_404(event_id)
+    db.session.delete(event)
+    db.session.commit()
+    return jsonify({"message": "Event deleted successfully"}), 200
+
+@api_bp.route('/admin/users', methods=['GET'])
+@jwt_required()
+@admin_required
+def get_users():
+    query = db.session.query(User)
+    users = query.all()
+    return jsonify([user.to_dict() for user in users])
