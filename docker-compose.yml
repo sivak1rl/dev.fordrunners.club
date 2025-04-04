@@ -1,12 +1,14 @@
-version: '3.8'
-
 services:
+  # Production Frontend
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.nginx
+      args:
+          - BUILD_MODE=prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
+      - ./frontend/nginx.prod.conf:/etc/nginx/conf.d/production.conf
     ports:
       - "80:80"
       - "443:443"
@@ -15,11 +17,66 @@ services:
     restart: unless-stopped
     networks:
       - app-network
+    environment:
+      - DOMAIN=fordrunners.club
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`fordrunners.club`)"
 
+  # Development Frontend
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.nginx
+      args:
+        - BUILD_MODE=dev
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./frontend/nginx.dev.conf:/etc/nginx/conf.d/production.conf
+      - ./frontend/vite.dev.config.js:/app/vite.config.js
+    ports:
+      - "8080:80"
+      - "8443:443"
+    depends_on:
+      - backend-dev
+    restart: unless-stopped
+    networks:
+      - dev-network
+    environment:
+      - DOMAIN=dev.fordrunners.club
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend-dev.rule=Host(`dev.fordrunners.club`)"
+      
+  # Local Development Frontend (no domain required)
+  frontend-local:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.nginx
+      args:
+        - BUILD_MODE=local
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend-local
+    networks:
+      - local-network
+    environment:
+      - DOMAIN=localhost
+    volumes:
+      - ./frontend/src:/app/src:ro
+      - ./frontend/nginx.local.conf:/etc/nginx/conf.d/production.conf
+      - ./frontend/vite.local.config.js:/app/vite.config.js
+    profiles:
+      - local
+
+  # Production Backend
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      args:
+          - BUILD_MODE=prod
     expose:
       - "5000"
     environment:
@@ -32,6 +89,104 @@ services:
     ports:
       - "5000:5000"
 
+  # Development Backend
+  backend-dev:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        - BUILD_MODE=dev
+    expose:
+      - "5001"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    restart: unless-stopped
+    networks:
+      - dev-network
+    ports:
+      - "5001:5001"
+    command: ["gunicorn", "--bind", "0.0.0.0:5001", "--reload", "frc:create_app()"]
+      
+  # Local Development Backend (no domain required)
+  backend-local:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        - BUILD_MODE=local
+    expose:
+      - "5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=local
+      - FLASK_DEBUG=1
+    networks:
+      - local-network
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    command: ["gunicorn", "--bind", "0.0.0.0:5000", "--reload", "frc:create_app()"]
+    profiles:
+      - local
+
+  # Traefik as reverse proxy
+  traefik:
+    image: traefik:v2.5
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - /etc/letsencrypt:/etc/letsencrypt
+      - certbot-webroot:/var/www/certbot
+      - ./traefik.toml:/etc/traefik/traefik.toml
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"  # Traefik dashboard
+    restart: unless-stopped
+    networks:
+      - app-network
+      - dev-network
+
+  # Certbot for certificate renewal
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - certbot-webroot:/var/www/certbot
+    depends_on:
+      - traefik
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done;'"
+    networks:
+      - app-network
+
+  # Temporary container for initial certificate creation
+  certbot-initial:
+    image: certbot/certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - certbot-webroot:/var/www/certbot
+    depends_on:
+      - traefik
+    profiles:
+      - setup
+    command: >
+      certonly --webroot -w /var/www/certbot
+      --non-interactive --agree-tos --email admin@fordrunners.club
+      -d fordrunners.club -d dev.fordrunners.club
+
+volumes:
+  letsencrypt:
+    driver: local
+  certbot-webroot:
+    driver: local
+
 networks:
   app-network:
+    driver: bridge
+  dev-network:
+    driver: bridge
+  local-network:
     driver: bridge

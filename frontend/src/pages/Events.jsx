@@ -3,11 +3,10 @@ import { useState, useEffect } from 'react';
 function Events() {
   const [events, setEvents] = useState([]);
   
-  // In a production app, you would fetch events from your API
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('/api/events');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/events`);
         const data = await response.json();
         setEvents(data);
       } catch (error) {
