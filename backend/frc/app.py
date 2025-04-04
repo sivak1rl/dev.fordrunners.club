@@ -50,13 +50,13 @@ def create_app(test_config=None):
         CORS(
             app,
             supports_credentials=True,
-            origins=os.environ.get("FRONTEND_ORIGIN", "http://localhost:3000")
+            origins=os.environ.get("FRONTEND_ORIGIN", "https://dev.fordrunners.club:8443")
         )
-    elif flask_env == 'staging':
+    elif flask_env == 'local':
         CORS(
             app,
             supports_credentials=True,
-            origins=os.environ.get("FRONTEND_ORIGIN", "http://localhost:8080")
+            origins=os.environ.get("FRONTEND_ORIGIN", "http://10.10.10.10:3000")
         )
     else:
         CORS(

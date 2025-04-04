@@ -23,7 +23,7 @@ COPY . .
 RUN if [ "$BUILD_MODE" = "prod" ]; then \
         npm run build; \
     fi
-RUN if [ "$BUILD_MODE" = "dev" ]\
+RUN if [ "$BUILD_MODE" = "dev" ]; then \
         npm run build -- --mode development --config vite.dev.config.js; \
     else \
         npm run build -- --mode development --config vite.local.config.js; \
