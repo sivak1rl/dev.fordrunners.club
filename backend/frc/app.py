@@ -45,11 +45,23 @@ def create_app(test_config=None):
 
     app.register_blueprint(api_bp, url_prefix="/api")
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
-    CORS(
-        app,
-        supports_credentials=True,
-        origins=os.environ.get("FRONTEND_ORIGIN", "http://localhost:8080")
-    )
+    flask_env = os.environ.get("FLASK_ENV", "development")
+    if flask_env == 'development':
+        CORS(
+            app,
+            supports_credentials=True,
+            origins=os.environ.get("FRONTEND_ORIGIN", "http://localhost:3000")
+        )
+    elif flask_env == 'staging':
+        CORS(
+            app,
+            supports_credentials=True,
+            origins=os.environ.get("FRONTEND_ORIGIN", "http://localhost:8080")
+        )
+    else:
+        CORS(
+            app,
+        )
 
     with app.app_context():
         db.create_all()

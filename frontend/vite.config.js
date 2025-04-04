@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 8080, // Match the port in your NGINX proxy
+    port: 3000, // Match the port in your NGINX proxy
     proxy: {
       '/api': {
         target: 'http://localhost:5000',

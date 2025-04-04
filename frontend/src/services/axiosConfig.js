@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Create baseURL for API
-axios.defaults.baseURL = window.ENV?.REACT_APP_API_URL || 'http://localhost:5000/';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/';
 
 // Add response interceptor for token expiration
 let isRefreshing = false;

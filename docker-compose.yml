@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile.nginx
     volumes:
       - letsencrypt:/etc/letsencrypt
+      - ./frontend/nginx.prod.conf:/etc/nginx/conf.d/production.conf
     ports:
       - "80:80"
       - "443:443"
@@ -26,9 +27,10 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.nginx
       args:
-        - BUILD_MODE=development
+        - BUILD_MODE=dev
     volumes:
       - letsencrypt:/etc/letsencrypt
+      - ./frontend/nginx.dev.conf:/etc/nginx/conf.d/production.conf
     ports:
       - "8080:80"
       - "8443:443"
@@ -49,7 +51,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.nginx
       args:
-        - BUILD_MODE=development
+        - BUILD_MODE=local
     ports:
       - "3000:80"
     depends_on:
@@ -57,7 +59,7 @@ services:
     networks:
       - local-network
     environment:
-      - DOMAIN=local
+      - DOMAIN=localhost
     volumes:
       - ./frontend/src:/app/src:ro
       - ./frontend/nginx.local.conf:/etc/nginx/conf.d/production.conf
@@ -87,7 +89,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
       args:
-        - BUILD_MODE=development
+        - BUILD_MODE=dev
     expose:
       - "5001"
     environment:
@@ -107,7 +109,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
       args:
-        - BUILD_MODE=development
+        - BUILD_MODE=dev
     expose:
       - "5000"
     environment:
