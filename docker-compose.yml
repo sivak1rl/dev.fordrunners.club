@@ -4,6 +4,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.nginx
+      args:
+          - BUILD_MODE=prod
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - ./frontend/nginx.prod.conf:/etc/nginx/conf.d/production.conf
@@ -31,6 +33,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - ./frontend/nginx.dev.conf:/etc/nginx/conf.d/production.conf
+      - ./frontend/vite.dev.config.js:/app/vite.config.js
     ports:
       - "8080:80"
       - "8443:443"
@@ -63,6 +66,7 @@ services:
     volumes:
       - ./frontend/src:/app/src:ro
       - ./frontend/nginx.local.conf:/etc/nginx/conf.d/production.conf
+      - ./frontend/vite.local.config.js:/app/vite.config.js
     profiles:
       - local
 
@@ -71,6 +75,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      args:
+          - BUILD_MODE=prod
     expose:
       - "5000"
     environment:
@@ -109,7 +115,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
       args:
-        - BUILD_MODE=dev
+        - BUILD_MODE=local
     expose:
       - "5000"
     environment:

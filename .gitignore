@@ -6,3 +6,5 @@
 .env.test
 .env.prod
 backend/instance/ford_runners.db
+.vscode/launch.json
+.vscode/settings.json

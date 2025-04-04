@@ -20,12 +20,14 @@ RUN npm rebuild esbuild
 COPY . .
 
 # Build the app based on mode
-RUN if [ "$BUILD_MODE" = "production" ]; then \
+RUN if [ "$BUILD_MODE" = "prod" ]; then \
         npm run build; \
-    else \
-        npm run build -- --mode development; \
     fi
-
+RUN if [ "$BUILD_MODE" = "dev" ]\
+        npm run build -- --mode development --config vite.dev.config.js; \
+    else \
+        npm run build -- --mode development --config vite.local.config.js; \
+    fi
 # Production stage
 FROM nginx:alpine
 

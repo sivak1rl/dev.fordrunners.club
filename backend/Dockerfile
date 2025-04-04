@@ -16,4 +16,4 @@ ENV SECRET_KEY=${SECRET_KEY}
 
 EXPOSE 5000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "frc:create_app()"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--reload", "frc:create_app()"]
