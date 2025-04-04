@@ -2,7 +2,7 @@
 
 A modern, full-stack web application built to serve the Ford Runners Club community. This platform connects Ford employees who enjoy running, providing event information, training resources, and a vibrant community hub.
 
-![Ford Runners Club Banner](/frontend/public/logo.png)
+![Ford Runners Club Banner](/frontend/public/logo.jpg)
 
 ## ✨ Features
 
