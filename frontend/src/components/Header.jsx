@@ -1,10 +1,13 @@
+// src/components/Header.jsx
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { currentUser, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +31,11 @@ function Header() {
   const closeMenu = () => {
     setMenuOpen(false);
     document.body.style.overflow = '';
+  };
+
+  const handleLogout = () => {
+    logout();
+    closeMenu();
   };
 
   // Close menu when route changes
@@ -113,6 +121,63 @@ function Header() {
                   Photo Gallery
                 </Link>
               </li>
+              
+              {/* Show these links only when user is authenticated */}
+              {currentUser && (
+                <>
+                  <li>
+                    <Link 
+                      to="/profile" 
+                      className={`nav-link ${location.pathname === '/profile' ? 'active' : ''}`}
+                    >
+                      My Profile
+                    </Link>
+                  </li>
+                  
+                  {/* Admin-only link */}
+                  {currentUser.is_admin && (
+                    <li>
+                      <Link 
+                        to="/admin" 
+                        className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}
+                      >
+                        Admin Dashboard
+                      </Link>
+                    </li>
+                  )}
+                  
+                  <li>
+                    <button 
+                      onClick={handleLogout}
+                      className="nav-link text-left w-full"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
+              
+              {/* Show these links only when user is not authenticated */}
+              {!currentUser && (
+                <>
+                  <li>
+                    <Link 
+                      to="/login" 
+                      className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`}
+                    >
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      to="/register" 
+                      className={`nav-link ${location.pathname === '/register' ? 'active' : ''}`}
+                    >
+                      Register
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>
@@ -122,6 +187,13 @@ function Header() {
         <div className="hero-content">
           <h1 className="hero-title">Ford Runners Club</h1>
           <p className="hero-subtitle">Running together for health, fitness, and community</p>
+          
+          {/* User greeting if logged in */}
+          {currentUser && (
+            <div className="text-white mt-4 bg-black bg-opacity-30 p-2 rounded-lg">
+              Welcome back, {currentUser.username}!
+            </div>
+          )}
         </div>
       </div>
     </>
