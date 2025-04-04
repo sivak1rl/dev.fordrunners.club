@@ -37,8 +37,8 @@ def register():
     db.session.commit()
     
     # Create tokens
-    access_token = create_access_token(identity=user.username)
-    refresh_token = create_refresh_token(identity=user.username)
+    access_token = create_access_token(identity=str(user.id))
+    refresh_token = create_refresh_token(identity=str(user.id))
     
     return jsonify({
         'user': user.to_dict(),
@@ -59,10 +59,10 @@ def login():
     
     # Create tokens
     access_token = create_access_token(
-        identity=user.username,
+        identity=str(user.id),
         additional_claims={'is_admin': user.is_admin}
     )
-    refresh_token = create_refresh_token(identity=user.username)
+    refresh_token = create_refresh_token(identity=str(user.id))
     
     return jsonify({
         'user': user.to_dict(),
@@ -73,11 +73,11 @@ def login():
 @auth_bp.route('/refresh', methods=['POST'])
 @jwt_required(refresh=True)
 def refresh():
-    current_user_id = get_jwt_identity()
+    current_user_id = int(get_jwt_identity())
     user = User.query.get(current_user_id)
     
     access_token = create_access_token(
-        identity=user.username,
+        identity=str(user.id),
         additional_claims={'is_admin': user.is_admin}
     )
     
@@ -86,7 +86,7 @@ def refresh():
 @auth_bp.route('/me', methods=['GET'])
 @jwt_required()
 def me():
-    current_user_id = get_jwt_identity()
+    current_user_id = int(get_jwt_identity())
     user = User.query.get(current_user_id)
     
     if not user:
