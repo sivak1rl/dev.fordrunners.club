@@ -52,6 +52,9 @@ function Footer() {
         <p className="footer-copyright">
           &copy; {currentYear} Ford Runners Club. All rights reserved.
         </p>
+	<div className="logo2">
+           <img src="/logo2.png" alt="The Ford Runners Club Alternate Logo" className="image" onError={(e) => {e.target.src = 'https://via.placeholder.com/400x300?text=Ford+Runners+Club'}} width="100"/>
+        </div>
         <div className="footer-legal">
           <Link to="/disclaimer" className="footer-legal-link">Disclaimer</Link>
           <Link to="/sitemap" className="footer-legal-link">Sitemap</Link>
