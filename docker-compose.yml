@@ -7,7 +7,6 @@ services:
       args:
           - BUILD_MODE=prod
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
       - ./frontend/nginx.production.conf:/etc/nginx/conf.d/production.conf
     depends_on:
       - backend
@@ -19,6 +18,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`fordrunners.club`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
 
   # Development Frontend
   frontend-dev:
@@ -28,7 +30,6 @@ services:
       args:
         - BUILD_MODE=dev
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
       - ./frontend/nginx.dev.conf:/etc/nginx/conf.d/production.conf
       - ./frontend/vite.dev.config.js:/app/vite.config.js
     ports:
@@ -43,6 +44,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend-dev.rule=Host(`dev.fordrunners.club`)"
+      - "traefik.http.routers.frontend-dev.entrypoints=websecure"
+      - "traefik.http.routers.frontend-dev.tls.certresolver=letsencrypt"
+      - "traefik.http.services.frontend-dev.loadbalancer.server.port=80"
+
+
       
   # Local Development Frontend (no domain required)
   frontend-local:
@@ -75,15 +81,25 @@ services:
           - BUILD_MODE=prod
     expose:
       - "5000"
+    volumes:
+      - db-data-prod:/app/instance
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
       - FLASK_DEBUG=0
+      - DATABASE_URL=sqlite:///instance/ford_runners.db
     restart: unless-stopped
     networks:
       - app-network
     ports:
       - "5000:5000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`fordrunners.club`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.backend.loadbalancer.server.port=5000"
+
 
   # Development Backend
   backend-dev:
@@ -94,16 +110,26 @@ services:
         - BUILD_MODE=dev
     expose:
       - "5001"
+    volumes:
+      - db-data-dev:/app/instance
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=development
       - FLASK_DEBUG=1
+      - DATABASE_URL=sqlite:///instance/ford_runners_dev.db
     restart: unless-stopped
     networks:
       - dev-network
     ports:
       - "5001:5001"
     command: ["gunicorn", "--bind", "0.0.0.0:5001", "--reload", "frc:create_app()"]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend-dev.rule=Host(`dev.fordrunners.club`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend-dev.entrypoints=websecure"
+      - "traefik.http.routers.backend-dev.tls.certresolver=letsencrypt"
+      - "traefik.http.services.backend-dev.loadbalancer.server.port=5001"
+
       
   # Local Development Backend (no domain required)
   backend-local:
@@ -114,16 +140,18 @@ services:
         - BUILD_MODE=local
     expose:
       - "5000"
+    volumes:
+      - db-data-local:/app/instance
+      - ./backend:/app
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=local
       - FLASK_DEBUG=1
+      - DATABASE_URL=sqlite:///instance/ford_runners_local.db
     networks:
       - local-network
     ports:
       - "5000:5000"
-    volumes:
-      - ./backend:/app
     command: ["gunicorn", "--bind", "0.0.0.0:5000", "--reload", "frc:create_app()"]
     profiles:
       - local
@@ -133,9 +161,11 @@ services:
     image: traefik:v2.5
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - /etc/letsencrypt:/etc/letsencrypt
+      - letsencrypt:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
-      - ./traefik.toml:/etc/traefik/traefik.toml
+      - ./traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./traefik/dynamic:/etc/traefik/dynamic:ro
+      - /etc/letsencrypt:/certs:ro
     ports:
       - "80:80"
       - "443:443"
@@ -144,17 +174,34 @@ services:
     networks:
       - app-network
       - dev-network
+  
+  certbot-webserver:
+    image: nginx:alpine
+    volumes:
+      - certbot-webroot:/usr/share/nginx/html
+    networks:
+      - app-network
+      - dev-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.acmechallenge.rule=HostRegexp(`{host:.+}`) && PathPrefix(`/.well-known/acme-challenge/`)"
+      - "traefik.http.routers.certbot.entrypoints=web"
+      - "traefik.http.routers.certbot.priority=100"
+      - "traefik.http.services.certbot.loadbalancer.server.port=80"
+
 
   # Certbot for certificate renewal
   certbot:
     image: certbot/certbot
     container_name: certbot
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
+      - letsencrypt:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
     depends_on:
       - traefik
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done;'"
+      - certbot-webserver
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do echo Hello; sleep 12h & wait $${!}; done;'"
+  # do certbot renew  --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done;'"
     networks:
       - app-network
 
@@ -162,21 +209,28 @@ services:
   certbot-initial:
     image: certbot/certbot
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
+      - letsencrypt:/etc/letsencrypt
       - certbot-webroot:/var/www/certbot
     depends_on:
       - traefik
+      - certbot-webserver
     profiles:
       - setup
     command: >
       certonly --webroot -w /var/www/certbot
       --non-interactive --agree-tos --email admin@fordrunners.club
-      -d fordrunners.club -d dev.fordrunners.club
+      --server https://acme-v02.api.letsencrypt.org/directory -d fordrunners.club -d dev.fordrunners.club
 
 volumes:
   letsencrypt:
     driver: local
   certbot-webroot:
+    driver: local
+  db-data-prod:
+    driver: local
+  db-data-dev:
+    driver: local
+  db-data-local:
     driver: local
 
 networks:

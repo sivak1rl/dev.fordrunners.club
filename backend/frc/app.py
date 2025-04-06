@@ -9,31 +9,31 @@ from frc.extensions import db, migrate, jwt, bcrypt
 
 
 def create_app(test_config=None):
-    app = Flask(__name__, static_folder="../../frontend/dist")
+    app = Flask(__name__, instance_relative_config=True, static_folder="../../frontend/dist")
 
     if test_config is None:
         app.config.from_mapping(
-            SECRET_KEY=os.environ.get(
-                "SECRET_KEY", "dev-key-please-change-in-production"
-            ),
-            SQLALCHEMY_DATABASE_URI=os.environ.get(
-                "DATABASE_URL", "sqlite:///ford_runners.db"
-            ),
-            SQLALCHEMY_TRACK_MODIFICATIONS=False,
-            JWT_SECRET_KEY=os.environ.get(
-                "JWT_SECRET_KEY", "jwt-secret-key-change-in-production"
-            ),
-            JWT_ACCESS_TOKEN_EXPIRES=(
-                60 * 60 if os.environ.get("FLASK_ENV") == "production" else 60 * 5
-            ),
-            JWT_REFRESH_TOKEN_EXPIRES=(
-                60 * 60 * 24 * 365
-                if os.environ.get("FLASK_ENV") == "production"
-                else 60 * 30
-            ),
-            JWT_TOKEN_LOCATION = ['headers'],
-            JWT_COOKIE_CSRF_PROTECT = False,
-        )
+                SECRET_KEY=os.environ.get(
+                    "SECRET_KEY", "dev-key-please-change-in-production"
+                    ),
+                SQLALCHEMY_TRACK_MODIFICATIONS=False,
+                JWT_SECRET_KEY=os.environ.get(
+                    "JWT_SECRET_KEY", "jwt-secret-key-change-in-production"
+                    ),
+                JWT_ACCESS_TOKEN_EXPIRES=(
+                    60 * 60 if os.environ.get("FLASK_ENV") == "production" else 60 * 5
+                    ),
+                JWT_REFRESH_TOKEN_EXPIRES=(
+                    60 * 60 * 24 * 365
+                    if os.environ.get("FLASK_ENV") == "production"
+                    else 60 * 30
+                    ),
+                JWT_TOKEN_LOCATION = ['headers'],
+                JWT_COOKIE_CSRF_PROTECT = False,
+                )
+        db_path = os.path.join(os.getcwd(), "instance", "ford_runners.db")
+        SQLALCHEMY_DATABASE_URI = f"sqlite:///{db_path}"
+        app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
     else:
         app.config.update(test_config)
         app.config["JWT_SECRET_KEY"] = "jwt-secret-key-change-in-production"
@@ -48,24 +48,28 @@ def create_app(test_config=None):
     flask_env = os.environ.get("FLASK_ENV", "development")
     if flask_env == 'development':
         CORS(
-            app,
-            supports_credentials=True,
-            origins=os.environ.get("FRONTEND_ORIGIN", "https://dev.fordrunners.club:8443")
-        )
+                app,
+                supports_credentials=True,
+                origins=os.environ.get("FRONTEND_ORIGIN", "https://dev.fordrunners.club:8443")
+                )
     elif flask_env == 'local':
         CORS(
-            app,
-            supports_credentials=True,
-            origins=os.environ.get("FRONTEND_ORIGIN", "http://10.10.10.10:3000")
-        )
+                app,
+                supports_credentials=True,
+                origins=os.environ.get("FRONTEND_ORIGIN", "http://10.10.10.10:3000")
+                )
     else:
         CORS(
-            app,
-        )
+                app,
+                )
 
     with app.app_context():
+        # Ensure folder exists for SQLite if needed
+        if app.config["SQLALCHEMY_DATABASE_URI"].startswith("sqlite:///"):
+            db_path = app.config["SQLALCHEMY_DATABASE_URI"].replace("sqlite:///", "", 1)
+            abs_path = os.path.join(app.root_path, db_path)
+            os.makedirs(os.path.dirname(abs_path), exist_ok=True)
         db.create_all()
-        
     return app
 
 

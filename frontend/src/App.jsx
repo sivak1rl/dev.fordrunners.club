@@ -56,10 +56,10 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/new" element={<NewRunners />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/sitemap" element={<Sitemap />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
             
             {/* Protected routes (require authentication) */}

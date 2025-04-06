@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.9
 
 WORKDIR /app
 
@@ -15,5 +15,4 @@ ENV FLASK_ENV=production
 ENV SECRET_KEY=${SECRET_KEY}
 
 EXPOSE 5000
-
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--reload", "frc:create_app()"]
