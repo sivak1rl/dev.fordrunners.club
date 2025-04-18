@@ -189,10 +189,6 @@ ford-runners-club/
 4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
-## 📜 License
-
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
-
 ## 👏 Acknowledgments
 
 - Icons by [Font Awesome](https://fontawesome.com/)
