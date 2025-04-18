@@ -68,7 +68,7 @@ A modern, full-stack web application built to serve the Ford Runners Club commun
 2. **Local Development with Docker (Recommended)**
    ```bash
    # Start the local development environment
-   ./manage_environments.sh start local
+   docker compose up -d --build frontend-local backend-local
    
    # The app will be available at:
    # - Frontend: http://localhost:3000
@@ -106,34 +106,25 @@ A modern, full-stack web application built to serve the Ford Runners Club commun
 
 ```bash
 # Build and deploy the production environment
-./manage_environments.sh start prod
+docker compose up -d --build frontend backend
 
 # For subsequent updates
-./manage_environments.sh rebuild prod
+docker compose down && docker compose up -d --build frontend backend
 ```
 
 ### Development Environment
 
 ```bash
 # Start the development environment
-./manage_environments.sh start dev
+docker compose up -d --build frontend-dev backend-dev
 
 # View logs
-./manage_environments.sh logs dev
+docker compose logs <frontend[-dev|-local]|backend[-dev|-local]>
 ```
 
 ### SSL Certificates
 
-```bash
-# Initial certificate setup
-./manage_environments.sh setup-certs
-
-# Renewal (although this happens automatically)
-./manage_environments.sh renew-certs
-
-# Check certificate status
-./manage_environments.sh cert-status
-```
+traefik should handle certs
 
 ## 📁 Project Structure
 
