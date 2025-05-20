@@ -19,6 +19,24 @@ A modern, full-stack web application built to serve the Ford Runners Club commun
 - **JWT Authentication** - Secure token-based authentication with refresh capabilities
 - **Admin Dashboard** - Protected routes for content management
 
+### 📝 Editable Content (New!)
+
+This feature allows administrators to manage content directly on specific pages of the website through an intuitive user interface.
+
+-   **Overview**: Administrators can edit text and other content elements on key pages like the Home and About pages without needing to delve into code or database management tools.
+-   **Affected Pages**: Currently, the Home and About pages have sections that are editable.
+-   **How to Edit (for Admins)**:
+    1.  Log in to the website with an administrator account.
+    2.  Navigate to an editable page (e.g., Home, About).
+    3.  You will see "Edit" buttons next to various content sections.
+    4.  Click an "Edit" button to open a simple content editor for that section.
+    5.  Make your desired changes in the text area provided.
+    6.  Click "Save" to apply the changes. The content on the page will update immediately.
+    7.  Click "Cancel" to discard any changes and close the editor.
+-   **Technical Notes**:
+    *   All editable content is stored in the `editable_content` table in the database.
+    *   The frontend interacts with backend API endpoints under `/api/content/...` to fetch and update the content.
+
 ### 🔐 Security Features
 - **HTTPS Enforcement** - SSL/TLS encryption via Let's Encrypt
 - **CORS Protection** - Configured access control

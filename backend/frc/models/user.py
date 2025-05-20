@@ -9,6 +9,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     is_admin = db.Column(db.Boolean, default=False)
+    modified_content = db.relationship('EditableContent', backref='modifier', lazy=True)
 
     def __init__(self, username, email, password, is_admin=False):
         self.username = username
